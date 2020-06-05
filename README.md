@@ -1,4 +1,5 @@
 #Secuencias por trigger
+
 CREATE OR REPLACE TRIGGER ASSIGN_DEPARTMENT_ID
 BEFORE INSERT ON DEPARTMENTS FOR EACH ROW
 BEGIN
@@ -8,4 +9,5 @@ BEGIN
 END;
 
 #Secuencias por groovy expression
+
 (new oracle.jbo.server.SequenceImpl("EMPLOYEES_SEQ", adf.object.getDBTransaction())).getSequenceNumber()
