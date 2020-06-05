@@ -1,0 +1,11 @@
+#Secuencias por trigger
+CREATE OR REPLACE TRIGGER ASSIGN_DEPARTMENT_ID
+BEFORE INSERT ON DEPARTMENTS FOR EACH ROW
+BEGIN
+  IF :NEW.DEPARTMENT_ID IS NULL OR :NEW.DEPARTMENT_ID < 0 THEN
+    SELECT DEPARTMENTS_SEQ.NEXTVAL INTO :NEW.DEPARTMENT_ID FROM DUAL;
+  END IF;
+END;
+
+#Secuencias por groovy expression
+(new oracle.jbo.server.SequenceImpl("EMPLOYEES_SEQ", adf.object.getDBTransaction())).getSequenceNumber()
